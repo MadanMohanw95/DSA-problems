@@ -24,7 +24,7 @@ const commonItem = (arr3, arr4) => {
 
 
 const commonItemUsingObject = (arr1, arr2) => {
-    let map = {}
+    let map = Object.create(null);
     for (let item of arr1) {
         if (!map[item]) {
             map[item] = true;
