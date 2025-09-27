@@ -36,6 +36,9 @@ class LinkedList {
      * Increment the variable while traversing until the index is met  
      */
     insert(index, value) {
+        if (index > this.length) {
+            return this.append(value)
+        } 
         const newNode = new Node(value);
         const leaderNode = this.traverseToIndex(index - 1);
         newNode.next = leaderNode.next;
@@ -72,13 +75,86 @@ class LinkedList {
         return currentNode;
     }
 
+    reverse() {
+        if (!this.head.next) {
+            this.head;
+        }
+        let first = this.head;
+        this.tail = this.head;
+        let second = first.next;
+        while (second) {
+            const temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp;
+        }
+        this.head.next = null;
+        this.head = first;
+
+        return this.head;
+    }
+
+    removeHead() {
+        if (!this.head) {
+            return null
+        }
+        const removed = this.head;
+        this.head = this.head.next;
+        this.length--
+        return removed.value
+    }
+
+    removeTail() {
+        if (this.head === null) {
+            return null
+        }
+        if (this.head.next === null) {
+            this.head = null;
+            this.tail = null;
+            return this.head
+        }
+
+       let current = this.head
+        while (current.next.next !== null) {
+            current = current.next
+        }
+        current.next = null;
+        this.tail = current;
+        return this.head
+    }
+
+    search(value) {
+        let counter = 0;
+        let current = this.head;
+        while (current !== null) {
+            if (current.value === value) {
+                return counter
+            }
+            current = current.next;
+            counter++;
+        }
+        return -1;
+    }
+
 }
 
-const ll = new LinkedList(10);
+// const ll = new LinkedList(10);
+// ll.append(5)
+// ll.append(15)
+// ll.prepend(1)
+// ll.insert(2, 57)
+// ll.insert(3, 78)
+// ll.remove(3)
+
+const ll = new LinkedList(10)
 ll.append(5)
-ll.append(15)
+ll.append(16)
 ll.prepend(1)
-ll.insert(2, 57)
-ll.insert(3, 78)
-ll.remove(3)
-console.log(ll.printList())
+ll.insert(2, 99)
+ll.insert(20, 88)
+ll.remove(2)
+ll.remove(2)
+ll.reverse()
+ll.printList()
+// actual: [1, 10, 16, 88]
+// reverse: [88, 16, 10, 1]
