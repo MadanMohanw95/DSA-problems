@@ -114,7 +114,7 @@ class LinkedList {
             return this.head
         }
 
-       let current = this.head
+        let current = this.head
         while (current.next.next !== null) {
             current = current.next
         }
@@ -136,7 +136,79 @@ class LinkedList {
         return -1;
     }
 
+    findMiddleNode() {
+        if (!this.head) {
+            return null;
+        }
+        let slow = this.head;
+        let fast = this.head;
+        while (fast !== null && fast.next !== null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    hasCycle() {
+        if (!this.head) {
+            return false
+        }
+
+        let slow = this.head;
+        let fast = this.head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow === fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    lengthOfCycle() {
+        if (!this.head) {
+            return 0
+        }
+        let headNode = this.head
+        let slow = this.head;
+        let fast = this.head;
+        while (fast != null && fast.next != null) {
+             slow = slow.next;
+            fast = fast.next.next;
+            
+            if (slow === fast) {
+                 slow = slow.next;
+                let counter = 1
+                while (slow !== fast) {
+                    slow = slow.next
+                    counter++
+                }
+                return counter
+            }
+        }
+        return 0
+    }
+
+    firstNodeInCycle() {
+        if (!head) {
+            return null
+        }
+        
+        let resSet = new Set();
+        let current = head;
+        while (current !== null) {
+            if (!resSet.has(current)) {
+                resSet.add(current)
+                current = current.next
+            } else {
+                return current
+            }
+        }
+        return null;
+    }
 }
+
 
 // const ll = new LinkedList(10);
 // ll.append(5)
@@ -156,5 +228,4 @@ ll.remove(2)
 ll.remove(2)
 ll.reverse()
 ll.printList()
-// actual: [1, 10, 16, 88]
-// reverse: [88, 16, 10, 1]
+
