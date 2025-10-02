@@ -207,6 +207,68 @@ class LinkedList {
         }
         return null;
     }
+
+     // 1 pointer O(n) space and O(n) time 
+    FindNthNodeFromEnd(index) {
+        if (!this.head) {
+            return null
+        } 
+        let obj = Object.create(null);
+        let current = this.head;
+        let idx = 1;
+        while (current !== null) {
+            obj[idx] = current;
+            current = current.next;
+            idx++;
+        }
+
+        let nthIdx = idx - index;
+        const node = obj[nthIdx]
+        return node
+    }
+
+    // 1 pointer O(1) space and O(n) time <= O(n) + O(n)
+    FindNthNodeFromEnd2(nthIdx) {
+        let current = this.head;
+        let idx = 1;
+        while (current != null) {
+            current = current.next;
+            idx++
+        }
+
+        if (nthIdx > idx) {
+            return null
+        }
+
+        let target = idx - nthIdx;
+        let counter = 1;
+        let curr = this.head;
+        while (counter < target) {
+            curr = curr.next;
+            counter++
+        }
+        return curr;
+    }
+
+    // Two pointer 1 pass O(1) Space and O(n) time
+    FindNthNodeFromEnd3(nthIdx) {
+        if (!this.head) return
+        let left = this.head
+        let right = this.head;
+        let idx = 1;
+        while (idx <= nthIdx) {
+            if (!right) return null
+            right = right.next;
+            idx++
+        }
+
+        while (right !== null) {
+            left = left.next;
+            right = right.next;
+        }
+
+        return left
+    }
 }
 
 
@@ -217,6 +279,16 @@ class LinkedList {
 // ll.insert(2, 57)
 // ll.insert(3, 78)
 // ll.remove(3)
+
+// let node1 = new Node(1);
+// let node2 = new Node(2);
+// let node3 = new Node(3);
+// let node4 = new Node(4);
+// node1.next = node2;
+// node2.next = node3
+// node3.next =node4
+// node4.next = node2
+// ll.head = node1
 
 const ll = new LinkedList(10)
 ll.append(5)
