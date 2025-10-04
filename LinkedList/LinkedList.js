@@ -269,6 +269,73 @@ class LinkedList {
 
         return left
     }
+
+     // store a idx variable with 1 index based approach.
+    // traversal until k-1 position to break into first linked list 
+    // to break the linked list i need to point k-1 node next reference as null
+    // before referencing next node as null, ill store k-1 node next reference 
+    // in another variable called second head. It ends up into two linked lists
+
+    splitLinkedListIntoTwo(k) {
+        if (k === 1) {
+            return {
+                first: null,
+                second: this.head
+            }
+        }
+
+        let map = Object.create(null);
+        let node = this.head;
+        let len = 0;
+        while (node !== null) {
+            len++
+            map[len] = node;
+            node = node.next;
+        }
+
+        if (k > len) {
+            return {
+                first: this.head,
+                second: null
+            }
+        }
+
+        let beforeNode = map[k-1]
+        beforeNode.next = null;
+        let secondHead = map[k];
+        return {
+            first: this.head,
+            second: secondHead
+        }
+    }
+
+    /**
+     * if k equals 1 return first list as null, then return rest of the list in second
+     * first traversal until k-1 and break the linked list by referencing next item as null
+     * assign the kth node to second list.
+     */
+    splitLinkedListIntoTwoImprovement(k) {
+        if (k === 1) {
+            return {
+                first: null,
+                second: this.head,
+            }
+        }
+        let len = 1;
+        let current = this.head;
+        while (current !== null && len < k - 1) {
+            current = current.next;
+            len++
+        } 
+        let secondHead = current
+        current.next = null;
+        this.head.next = current;
+
+        return {
+            first: this.head,
+            second: secondHead
+        }
+    }
 }
 
 
