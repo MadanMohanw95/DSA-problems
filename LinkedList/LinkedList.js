@@ -309,28 +309,42 @@ class LinkedList {
         }
     }
 
-    /**
+  /**
      * if k equals 1 return first list as null, then return rest of the list in second
      * first traversal until k-1 and break the linked list by referencing next item as null
      * assign the kth node to second list.
      */
     splitLinkedListIntoTwoImprovement(k) {
+        if (!this.head) {
+            return {
+                first: null,
+                second: null
+            }
+        }
+        
         if (k === 1) {
             return {
                 first: null,
                 second: this.head,
             }
         }
+        
         let len = 1;
         let current = this.head;
         while (current !== null && len < k - 1) {
             current = current.next;
             len++
         } 
-        let secondHead = current
-        current.next = null;
-        this.head.next = current;
 
+        if (current === null || current.next === null) {
+            return {
+                first: this.head,
+                second: null
+            }
+        }
+        let secondHead = current.next;
+        current.next = null;
+        
         return {
             first: this.head,
             second: secondHead
