@@ -350,6 +350,99 @@ class LinkedList {
             second: secondHead
         }
     }
+
+    // traversal until either list1 or list2 has the node.
+    // if both values equals then keep the next pointer one by one
+    // if first list value less than second list value then point the 
+    // first to reference as next pointer and if second list value is less
+    // than first list value then point the second reference as next pointer
+    // if first list node is null and second list has the node simply point the 
+    // reference and vice versa
+    mergeTwoLinkedList(list1, list2) {
+        if (list1 === null && list2 === null) {
+            return [];
+        }
+
+        if (list1 === null) {
+            return list2;
+        }
+
+        if (list2 === null) {
+            return list1
+        }
+        let newNode = new Node(0)
+        this.head = newNode;
+        this.tail = newNode;
+        let firstList = list1;
+        let secondList = list2;
+        while (firstList !== null && secondList !== null) {
+            if (firstList.value === secondList.value) {
+                this.appendAndIncrementNode(firstList);
+                this.appendAndIncrementNode(secondList);
+            } else if (firstList.value < secondList.value) {
+                this.appendAndIncrementNode(firstList);
+            } else {
+                this.appendAndIncrementNode(secondList);
+            }
+        }
+        if (firstList === null) {
+            this.tail.next = secondList;
+        }
+        if (secondList === null) {
+            this.tail.next = firstList;
+        }
+        return this.head.next
+    }
+
+    appendAndIncrementNode(node) {
+        const newNode = new Node(value);
+        this.tail.next = newNode;
+        this.tail = newNode;
+        node = node.next;
+    }
+
+    removeElements(value) {
+        if (!this.head) {
+            return []
+        }
+        let dummy = new Node(0);
+        let prev = dummy;
+        let current = this.head;
+        dummy.next = this.head;
+        while (current !== null) {
+            if (current.value === value) {
+                prev.next = current.next;
+            } else {
+                prev = current;
+            }
+            current = current.next;
+        }
+        this.head = dummy.next;
+        return this.head;
+    }
+
+deleteDuplicates() {
+        let dummy = new Node(0);
+        let prev = dummy;
+        dummy.next = this.head
+        let current = this.head;
+        while (current !== null) {
+            let hasDuplicate = false;
+            while (current.next !== null && current.value === current.next.value) {
+                hasDuplicate = true;
+                current = current.next
+            }
+
+            if (!hasDuplicate) {
+                prev = prev.next;
+            } else {
+                prev.next = current.next;
+            }
+            current = current.next;
+        }
+        this.head = dummy.next;
+        return this.head;
+    }
 }
 
 
