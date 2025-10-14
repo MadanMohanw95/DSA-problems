@@ -1,0 +1,20 @@
+i have confusion alwasys when we remove the node it changes in all nodes 
+remove means like here pointing first.next to second.next it changes in all nodes the node doesnt show up in first, second, prev,dummy and this.head
+
+in some cases it only changes in prev and increments and does not change anything in  first, or second or dummy or this.head 
+
+and give me some other cases where it updates and it doesnt. once i master this i will be confident in utilizing the mind memory without have to debug whats happening.
+
+
+        let dummy = new Node(0);
+        dummy.next = this.head;
+        let prev = dummy;
+
+        let first = this.head;
+        let second = first.next;
+
+        first.next = second.next;
+        prev.next = second;
+        second.next = first;
+        this.head = dummy.next;
+        return  this.head 
