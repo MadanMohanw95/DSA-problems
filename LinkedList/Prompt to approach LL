@@ -1,0 +1,42 @@
+I want to master linked list problems step by step like an expert.
+Create a comprehensive learning roadmap divided into phases from beginner to advanced. For each phase, include:
+
+Core Concepts – the mental model or intuition I must build (e.g., references, dummy nodes, head/tail handling, in-place changes). Include clear memory visuals and common pitfalls.
+
+Tactics & Patterns – exact techniques or patterns I need to master (e.g., reverse in-place, fast/slow pointers, dummy pointer reconnection, pointer manipulation during splits and merges).
+
+Mini Exercises – small coding or thought experiments to reinforce understanding (like tracing .next changes, swapping nodes, or breaking/reconnecting lists).
+
+Main Challenges – classic LeetCode-style problems to apply the phase’s concepts, arranged progressively by difficulty (easy → medium → hard). Include hints for each challenge.
+
+Reflection Prompts – questions to verify deep understanding (e.g., “what happens if I reassign a node reference vs mutate it?” “How does changing .next affect original list?”).
+
+Structure the roadmap as follows:
+
+Phase 1: Understanding References and Pointers
+
+Phase 2: Basic Traversal and Reversal
+
+Phase 3: Connection & Disconnection (splitting/merging)
+
+Phase 4: Fast/Slow Pointer Patterns
+
+Phase 5: Recursive Thinking in Linked Lists
+
+Phase 6: Dummy Node & Segmented Manipulations
+
+Phase 7: Advanced Chains (Reorder, Flatten, Copy Random List, Merge K Lists)
+
+Phase 8: Practice Marathon – Mixed Patterns
+
+For each phase, provide:
+
+Step-by-step intuition and mental visualization of node references and memory effects
+
+Key tricks, pointer manipulations, and in-place operations
+
+Mini exercises and main challenges with hints
+
+Reflection questions to ensure mastery before moving to the next phase
+
+The goal is that after completing all phases, I can tackle any linked list problem confidently, understanding exactly how pointers and node references behave in all operations.
